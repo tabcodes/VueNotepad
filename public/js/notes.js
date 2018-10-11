@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 48);
+/******/ 	return __webpack_require__(__webpack_require__.s = 53);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -12352,34 +12352,39 @@ exports.push([module.i, ".vld-overlay {\n  bottom: 0;\n  left: 0;\n  position: a
 /* 45 */,
 /* 46 */,
 /* 47 */,
-/* 48 */
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(49);
+module.exports = __webpack_require__(54);
 
 
 /***/ }),
-/* 49 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 window.Vue = __webpack_require__(7);
 
-Vue.component('registration-form', __webpack_require__(50));
+Vue.component('notes-application', __webpack_require__(55));
 
 var app = new Vue({
-    el: '#register-form'
+    el: '#notes-container'
 });
 
 /***/ }),
-/* 50 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(10)
 /* script */
-var __vue_script__ = __webpack_require__(51)
+var __vue_script__ = __webpack_require__(56)
 /* template */
-var __vue_template__ = __webpack_require__(52)
+var __vue_template__ = __webpack_require__(57)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -12396,7 +12401,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/Registration.vue"
+Component.options.__file = "resources/js/components/NotesSPA.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -12405,9 +12410,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-70725824", Component.options)
+    hotAPI.createRecord("data-v-f5fe89e4", Component.options)
   } else {
-    hotAPI.reload("data-v-70725824", Component.options)
+    hotAPI.reload("data-v-f5fe89e4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -12418,7 +12423,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 51 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12501,393 +12506,234 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log("Component mounted.");
-  },
+  mounted: function mounted() {},
 
   components: {
     Loading: __WEBPACK_IMPORTED_MODULE_0_vue_loading_overlay___default.a
   },
   data: function data() {
     return {
-      form: new __WEBPACK_IMPORTED_MODULE_1__classes_js__["a" /* Form */]({
-        name: "",
-        email: "",
-        password: "",
-        password_confirmation: "",
-        form_success: false,
-        form_loading: false
-      })
+      new_note_form: new __WEBPACK_IMPORTED_MODULE_1__classes_js__["a" /* Form */]({
+        title: null,
+        body: null,
+        color: null
+      }),
+      edit_note_form: new __WEBPACK_IMPORTED_MODULE_1__classes_js__["a" /* Form */]({
+        new_title: null,
+        new_body: null
+      }),
+      note_list: []
     };
   },
 
   methods: {
-    onSubmit: function onSubmit() {
-      this.form.submit("post", "/register");
+    addNote: function addNote() {
+      this.note_list.push(new __WEBPACK_IMPORTED_MODULE_1__classes_js__["b" /* Note */](this.new_note_form.title, this.new_note_form.body, this.new_note_form.color));
     }
   }
 });
 
 /***/ }),
-/* 52 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c(
-        "div",
-        { staticClass: "col-md-8 vld-parent" },
-        [
-          _c("loading", {
-            attrs: {
-              active: this.form.form_loading,
-              "can-cancel": false,
-              "is-full-page": false
-            },
-            on: {
-              "update:active": function($event) {
-                _vm.$set(this.form, "form_loading", $event)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header  text-white bg-secondary" }, [
-              _vm._v("User Registration")
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "col-md-4 py-2" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [_vm._v("Create New Note")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "form-group row" }, [
+            _c("label", { attrs: { for: "note_title" } }, [
+              _vm._v(
+                "\n                        Note Title\n                    "
+              )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c(
-                "form",
+            _c("input", {
+              directives: [
                 {
-                  attrs: { method: "POST", action: "register" },
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.onSubmit($event)
-                    }
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.new_note_form.title,
+                  expression: "new_note_form.title"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text" },
+              domProps: { value: _vm.new_note_form.title },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
                   }
-                },
-                [
-                  _c("div", { staticClass: "form-group row" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-4 col-form-label text-md-right",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Name")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.name,
-                            expression: "form.name"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        class: { "is-invalid": _vm.form.errors.has("name") },
-                        attrs: {
-                          id: "name",
-                          type: "text",
-                          name: "name",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.form.name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "name", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group row justify-content-center",
-                      staticStyle: { height: "20px" }
-                    },
-                    [
-                      _c(
-                        "transition",
-                        {
-                          attrs: {
-                            name: "custom-classes-transition",
-                            "enter-active-class": "animated fadeInDown",
-                            "leave-active-class": "animated fadeOutDown"
-                          }
-                        },
-                        [
-                          _vm.form.errors.has("name")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\n                                    " +
-                                    _vm._s(_vm.form.errors.get("name")) +
-                                    "\n                                "
-                                )
-                              ])
-                            : _vm._e()
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group row" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-4 col-form-label text-md-right",
-                        attrs: { for: "email" }
-                      },
-                      [_vm._v("E-Mail Address")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.email,
-                            expression: "form.email"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        class: { "is-invalid": _vm.form.errors.has("email") },
-                        attrs: { id: "email", type: "email", name: "email" },
-                        domProps: { value: _vm.form.email },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "email", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group row justify-content-center",
-                      staticStyle: { height: "20px" }
-                    },
-                    [
-                      _c(
-                        "transition",
-                        {
-                          attrs: {
-                            name: "custom-classes-transition",
-                            "enter-active-class": "animated fadeInDown",
-                            "leave-active-class": "animated fadeOutDown"
-                          }
-                        },
-                        [
-                          _vm.form.errors.has("email")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\n                                    " +
-                                    _vm._s(_vm.form.errors.get("email")) +
-                                    "\n                                "
-                                )
-                              ])
-                            : _vm._e()
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group row" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-4 col-form-label text-md-right",
-                        attrs: { for: "password" }
-                      },
-                      [_vm._v("Password")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.password,
-                            expression: "form.password"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        class: {
-                          "is-invalid": _vm.form.errors.has("password")
-                        },
-                        attrs: {
-                          id: "password",
-                          type: "password",
-                          name: "password"
-                        },
-                        domProps: { value: _vm.form.password },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "password", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group row" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-4 col-form-label text-md-right",
-                        attrs: { for: "password-confirm" }
-                      },
-                      [_vm._v("Confirm Password")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.password_confirmation,
-                            expression: "form.password_confirmation"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        class: {
-                          "is-invalid": _vm.form.errors.has("password")
-                        },
-                        attrs: {
-                          id: "password-confirm",
-                          type: "password",
-                          name: "password_confirmation"
-                        },
-                        domProps: { value: _vm.form.password_confirmation },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.form,
-                              "password_confirmation",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group row justify-content-center",
-                      staticStyle: { height: "20px" }
-                    },
-                    [
-                      _c(
-                        "transition",
-                        {
-                          attrs: {
-                            name: "custom-classes-transition",
-                            "enter-active-class": "animated fadeInDown",
-                            "leave-active-class": "animated fadeOutDown"
-                          }
-                        },
-                        [
-                          _vm.form.errors.has("password")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\n                                    " +
-                                    _vm._s(_vm.form.errors.get("password")) +
-                                    "\n                                "
-                                )
-                              ])
-                            : _vm._e()
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ]
+                  _vm.$set(_vm.new_note_form, "title", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group row" }, [
+            _c("label", { attrs: { for: "note_body" } }, [
+              _vm._v(
+                "\n                        Note Text\n                    "
               )
-            ])
-          ])
-        ],
-        1
-      )
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row mb-0" }, [
-      _c("div", { staticClass: "col-md-6 offset-md-4" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-          [
-            _vm._v(
-              "\n                                    Register\n                                "
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.new_note_form.body,
+                  expression: "new_note_form.body"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", resize: "false" },
+              domProps: { value: _vm.new_note_form.body },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.new_note_form, "body", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group row" }, [
+            _c("label", { attrs: { for: "note_body" } }, [
+              _vm._v(
+                "\n                        Note Color\n                    "
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.new_note_form.color,
+                    expression: "new_note_form.color"
+                  }
+                ],
+                staticClass: "form-control",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.new_note_form,
+                      "color",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c(
+                  "option",
+                  { attrs: { selected: "", disabled: "", value: "white" } },
+                  [
+                    _vm._v(
+                      "\n                            White\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "blue" } }, [
+                  _vm._v(
+                    "\n                            Blue\n                        "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "red" } }, [
+                  _vm._v(
+                    "\n                            Red\n                        "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "green" } }, [
+                  _vm._v(
+                    "\n                            Green\n                        "
+                  )
+                ])
+              ]
             )
-          ]
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group row justify-content-center" }, [
+            _c(
+              "button",
+              { staticClass: "btn btn-info", on: { click: _vm.addNote } },
+              [_vm._v("Add Note")]
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-8 py-2" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [_vm._v("My Notes")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-body" },
+          [
+            _vm.note_list.length == 0
+              ? _c("div", { staticClass: "row justify-content-center" }, [
+                  _c("div", {}, [
+                    _vm._v(
+                      "\n                        You haven't added any notes as of yet!\n                    "
+                    )
+                  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._l(_vm.note_list, function(note) {
+              return _c("div", [
+                _c("div", { staticClass: "py-5", class: _vm.bg - note.color }, [
+                  _c("h2", [_vm._v(_vm._s(note.title))]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v(_vm._s(note.body))])
+                ])
+              ])
+            })
+          ],
+          2
         )
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-70725824", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-f5fe89e4", module.exports)
   }
 }
 

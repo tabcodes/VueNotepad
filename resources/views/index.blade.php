@@ -3,6 +3,5 @@
 
 @section('content')
 
-index lol
 
 @endsection

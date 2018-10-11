@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'PagesController@indexPage')->name('index');
+Route::get('/notes', 'PagesController@notesApplication')->name('notes');
+
 
 Auth::routes();
 
