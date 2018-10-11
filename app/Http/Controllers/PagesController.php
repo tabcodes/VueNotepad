@@ -16,4 +16,16 @@ class PagesController extends Controller
     public function indexPage(Request $request) {
         return view('index');
     }
+
+
+    /**
+     * Returns the view for the Vue notes application.
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function notesApplication(Request $request) {
+        return view('notes');
+    }
+
 }

@@ -72,3 +72,14 @@ export class Form {
     }
 
 }
+
+export class Note {
+
+    constructor(note_title, note_body, note_color) {
+        this.title = note_title;
+        this.body = note_body;
+        this.color = note_color;  
+    }
+
+    
+}
