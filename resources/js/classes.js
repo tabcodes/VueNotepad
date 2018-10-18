@@ -55,6 +55,7 @@ export class Form {
 
     onFail(error) {
         this.errors.record(error.response.data.errors);
+        console.log(error.response.data.errors)
     }
 
     reset() {
@@ -75,10 +76,33 @@ export class Form {
 
 export class Note {
 
-    constructor(note_title, note_body, note_color) {
-        this.title = note_title;
-        this.body = note_body;
-        this.color = note_color;  
+    constructor(form_data) {
+        this.title = form_data.title;
+        this.body = form_data.body;
+        this.color = form_data.color;
+        this.id = form_data.id;
+        
+        this.created_at = new Date(Date.now()).toLocaleString();
+        this.edit_active = false;
+
+        this.edit_props = {
+            title: form_data.title,
+            body: form_data.body
+        };
+ 
+      this.edit_errors = new FormError();
+    }
+
+    saveChanges() {
+        this.title = this.edit_props.title;
+        this.body = this.edit_props.body;
+        this.edit_active = false;
+    }
+
+    discardChanges() {
+        this.edit_props.title = this.title;
+        this.edit_props.body = this.body;
+        this.edit_active = false;
     }
 
     
