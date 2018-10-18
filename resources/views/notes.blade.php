@@ -2,7 +2,7 @@
 @section('content')
 
 
-<div class="container py-5" id="notes-container">
+<div class="container py-2" id="notes-container">
 
     <notes-application></notes-application>
 
